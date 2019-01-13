@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'gistal'
+
+config_filename = ARGV[0]
+if config_filename.nil? || config_filename.empty?
+  puts "config file not given"
+  return
+end
+
+config_file = File.join(`pwd`.strip, config_filename)
+
+unless File.exists?(config_file)
+  puts "#{config_filename} not exists"
+  return
+end
+
+Gistal.new(config_file).parse
